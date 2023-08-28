@@ -1,17 +1,25 @@
-import 'dart:developer';
+import 'dart:convert';
 
+import 'package:currency_converter/app_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:currency_converter/app_helpers.dart';
-import 'package:currency_converter/currency_item.dart';
 import 'package:currency_converter/drawer.dart';
+import 'package:currency_converter/http_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
+import 'currency_item.dart';
+import 'drawer.dart';
 import 'currency.dart';
-import 'http_service.dart';
+import 'app_helpers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,24 +28,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isLoading = false;
   List<Currency> _currencies = [];
-  late RefreshController _controller;
+  late RefreshController _refreshController;
   late DateTime _selectedDate;
-  String _locale = 'uz';
+
+  late Currency currency;
 
 
   @override
   void initState() {
     super.initState();
-    _controller = RefreshController();
+    _refreshController = RefreshController();
     _selectedDate = DateTime.now();
     _getCurrencies();
-
   }
 
   Future<void> _getCurrencies() async {
     setState(() {
       _isLoading = true;
       _currencies = [];
+      currency = Currency();
+
     });
     final client = GetIt.I.get<HttpService>().client();
     final response = await client.get(
@@ -47,84 +57,117 @@ class _HomePageState extends State<HomePage> {
       _isLoading = false;
       _currencies = CurrencyResponse.fromJson(response.data).data ?? [];
     });
+    _refreshController.loadComplete();
   }
 
-  Future<void> _refreshCurrencies() async {
+  Future<void> _refreshCurency() async {
     final client = GetIt.I.get<HttpService>().client();
     final response = await client.get(
         '/uz/arkhiv-kursov-valyut/json/all/${AppHelpers.getFormattedDate(_selectedDate)}/');
     debugPrint('===> $response');
     setState(() {
+      _isLoading = false;
       _currencies = CurrencyResponse.fromJson(response.data).data ?? [];
     });
-    _controller.refreshCompleted();
+    _refreshController.refreshCompleted();
   }
+
+  void dispose() {
+    super.dispose();
+    _refreshController.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    final translate = AppLocalizations.of(context);
+    final provider = Provider.of<AppProvider>(context);
     return Scaffold(
       drawer: HomeDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text('Currency_converter'),
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Color(0xFF01CED8),
+        title: Text(
+          '${translate?.currencyConverter}',style: TextStyle(color: Colors.black),
+        ),
         actions: [
           IconButton(
-              onPressed: () async {
-                final DateTime? changedDate = await showDatePicker(
-                    context: context,
-                    initialDate: _selectedDate,
-                    firstDate: (DateTime.now().subtract(Duration(days: 30))),
-                    lastDate: DateTime.now());
-                if (changedDate != null) {
-                  setState(() {
-                    _selectedDate = changedDate;
-                    _getCurrencies();
-                  });
-                }
-              },
-              icon:Icon(Icons.calendar_month) ),
-          PopupMenuButton(
-              itemBuilder: (_) => [
-                    const PopupMenuItem(
-                      value: 'uz',
-                      child: Text('O\'zbekcha'),
-                    ),
-                    const PopupMenuItem(
-                      value: 'en',
-                      child: Text('English'),
-                    ),
-                    const PopupMenuItem(
-                      value: 'ru',
-                      child: Text('русский'),
-                    ),
-                  ],
-          onSelected: (value){
+            icon: Icon(
+              Icons.calendar_month,
+            ),
+            onPressed: () async {
+              final DateTime? changedDate = await showDatePicker(
+                  context: context,
+                  initialDate: _selectedDate,
+                  firstDate:
+                  (DateTime.now().subtract(const Duration(days: 30))),
+                  lastDate: DateTime.now());
+              if (changedDate != null) {
                 setState(() {
-                  _locale = value;
+                  _selectedDate = changedDate;
+                  _getCurrencies();
                 });
-          },),
-        ],
-      ),
-      body: Column(
-        children: [
-          const SizedBox(height: 40),
-
-          Expanded(
-            child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : SmartRefresher(
-                    controller: _controller,
-                    onRefresh: _refreshCurrencies,
-                    child: ListView.builder(
-                      itemCount: _currencies.length,
-                      itemBuilder: (context, index) {
-                        return CurrencyItem(currency: _currencies[index],
-                        locale: _locale,);
-                      },
-                    ),
-                  ),
+              }
+            },
+          ),
+          PopupMenuButton(
+            itemBuilder: (_) => [
+              const PopupMenuItem(
+                value: 'uz',
+                child: Text('O\'zbekcha'),
+              ),
+              const PopupMenuItem(
+                value: 'en',
+                child: Text('English'),
+              ),
+              const PopupMenuItem(
+                value: 'ru',
+                child: Text('русский'),
+              ),
+            ],
+            onSelected: (value) {
+             switch(value){
+               case 'uz':
+                 provider.setLocale('uz', '');
+                 break;
+               case 'ru':
+                 provider.setLocale('ru', '');
+                 break;
+               default :
+                 provider.setLocale('en', '');
+                 break;
+              };
+            },
           ),
         ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color(0xFF00D0CE),
+              Color(0xFF82E58A)
+            ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight
+
+            )
+        ),
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : SmartRefresher(
+          controller: _refreshController,
+          onRefresh: _refreshCurency,
+          child: ListView.builder(
+              itemCount: _currencies.length,
+              itemBuilder: (context, index) {
+                return CurrencyItems(
+                  currency: _currencies[index],
+                  locale: provider.locale?.languageCode ?? 'en',
+                  selectedDate: _selectedDate,
+                );
+              }),
+        ),
       ),
     );
   }

@@ -1,4 +1,15 @@
 {
-  "enterValue" : "Qiymatni kiriting",
-  "currencyConverter" : "Valyuta konvertori"
+  "currencyConverter" : "Valyuta konvertori",
+  "rateOnPlayMarket" : "Play Marketda baholang",
+  "sourceCode": "Dastur kodlari",
+  "ourTelegramChannel": "Bizning Telegram kanal",
+  "weAreOnFacebook": "Biz Facebookda",
+  "weAreOnTwitter":"Biz Twitterda",
+  "weAreOnInstagram":"Biz Instagramda",
+  "feedback":"Fikr mulohaza",
+  "about": "Dastur haqida",
+  "centralBankOfTheRepublicOfUzbekistan": "O'zbekiston Respublikasi Markaziy banki",
+  "currencyExchange": "Valyutalar kursi",
+  "preparedOnTheBasisOfOpenDataOpenSourceProgram": "ochiq ma'lumotlar asosida tayyorlangan.Dastur ochiq kodli bo'lib ,",
+  "zarnigorUmrzakova": "Zarnigor Umrzakova"
 }

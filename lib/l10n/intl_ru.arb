@@ -1,4 +1,15 @@
 {
-  "enterValue" : "Введите значение",
-  "currencyConverter" : "конвертер валют"
+  "currencyConverter" : "Kонвертер валют",
+  "rateOnPlayMarket" : "Оценить на Плей Маркете",
+  "sourceCode": "Исходный код",
+  "ourTelegramChannel": "Наш Telegram канал",
+  "weAreOnFacebook": "Мы в Facebook",
+  "weAreOnTwitter":"Мы в твиттере",
+  "weAreOnInstagram":"Мы в инстаграме",
+  "feedback":"Обратная связь",
+  "about": "О программе",
+  "centralBankOfTheRepublicOfUzbekistan": "Центральный банк Республики Узбекистан",
+  "currencyExchange": "Курсы обмена",
+  "preparedOnTheBasisOfOpenDataOpenSourceProgram,": "Подготовлено на основе открытых данных. Программа с открытым исходным кодом,",
+  "zarnigorUmrzakova": "Зарнигор Умрзакова"
 }

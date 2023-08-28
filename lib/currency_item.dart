@@ -1,15 +1,21 @@
 import 'package:currency_converter/app_helpers.dart';
 import 'package:currency_converter/converter_page.dart';
+import 'package:currency_converter/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'currency.dart';
 
-class CurrencyItem extends StatelessWidget {
+class CurrencyItems extends StatelessWidget {
   final Currency currency;
   final String locale;
+  final DateTime selectedDate;
 
-  const CurrencyItem({super.key, required this.currency, required this.locale});
+  const CurrencyItems({
+    super.key,
+    required this.currency,
+    required this.locale,
+   required this.selectedDate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,67 +23,55 @@ class CurrencyItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => ConverterPage(currency: currency,locale: locale,)),
+          MaterialPageRoute(
+            builder: (_) => ConverterPage(
+              currency: currency,
+              locale: locale,
+              selectedDate: selectedDate,
+            ),
+          ),
         );
       },
       child: Container(
+        color: Colors.white.withOpacity(0.2),
         padding: const EdgeInsets.all(16),
-        child: Column(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Row(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                 AppHelpers.getCurrencyTitleByLocale(currency, locale),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  NumberFormat.currency(symbol: 'UZS')
-                      .format(double.tryParse('${currency.rate}')),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
+            Expanded(
+              child: Text(
+                AppHelpers.getCurrencyTitleByLocale(currency, locale),
+              ),
             ),
-            const SizedBox(height: 16),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  '${currency.ccy}',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
+                  NumberFormat.currency(symbol: 'UZS  ').format(
+                    double.tryParse('${currency.rate} '),
                   ),
                 ),
-                Row(
-                  children: [
-                    (currency.diff?.startsWith('-') ?? false)
-                        ? const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.red,
-                    )
-                        : const Icon(
-                      Icons.keyboard_arrow_up,
-                      color: Colors.green,
-                    ),
-                    Text(
-                      '${currency.diff}',
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  '${(currency.diff?.startsWith('-') ?? false) ? '${currency.diff}' : '+${currency.diff}'}',
+                  style: TextStyle(
+                      color: (currency.diff?.startsWith('-') ?? false)
+                          ? Colors.red[800]
+                          : Colors.green[800]),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                (currency.diff?.startsWith('-') ?? false)
+                    ? Icon(
+                  Icons.south_east,
+                  color: Colors.red[800],
+                )
+                    : Icon(
+                  Icons.north_east,
+                  color: Colors.green[700],
                 ),
               ],
             ),

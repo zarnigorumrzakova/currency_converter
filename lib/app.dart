@@ -2,11 +2,7 @@ import 'package:currency_converter/app_provider.dart';
 import 'package:currency_converter/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'app_provider.dart';
-import 'home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,16 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_)=> AppProvider(),
-      builder: (context,child) {
-        return  MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: HomePage(),
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Provider.of<AppProvider>(context).locale,
-        );
-      }
+        create: (_) => AppProvider(),
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: HomePage(),
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: Provider.of<AppProvider>(context).locale,
+          );
+        }
     );
   }
 }

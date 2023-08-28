@@ -1,10 +1,55 @@
 {
-  "enterValue" : "Enter the value",
-  "@enterValue" : {
-    "description" : "Entering"
-  },
   "currencyConverter" : "Currency converter",
   "@currencyConverter" : {
     "description" : "Converter"
+  },
+  "rateOnPlayMarket" : "Rate on Play Market",
+  "@rateOnPlayMarket" : {
+    "description": "Rate"
+  },
+  "sourceCode" : "Source Code",
+  "@sourceCode" : {
+    "description": "Source"
+  },
+  "ourTelegramChannel": "Our Telegram Channel",
+  "@ourTelegramChannel": {
+    "description": "Our"
+  },
+  "weAreOnFacebook": "We are on Facebook",
+  "@weAreOnFacebook": {
+    "description": "We"
+  },
+  "weAreOnTwitter": "We Are On Twitter",
+  "@weAreOnTwitter": {
+    "description": "We"
+  },
+  "weAreOnInstagram": "We Are On Instagram",
+  "@weAreOnInstagram":{
+    "description": "We"
+  },
+  "feedback": "Feedback",
+  "@feedback": {
+    "description": "Feedback"
+  },
+  "about":"About",
+  "@about": {
+    "description": "About"
+  },
+  "centralBankOfTheRepublicOfUzbekistan": "Central Bank of the Republic of Uzbekistan",
+  "@centralBankOfTheRepublicOfUzbekistan": {
+    "description": "Central"
+  },
+  "currencyExchange": "Currency exchange",
+  "@currencyExchange": {
+    "description": "Currency"
+  },
+  "preparedOnTheBasisOfOpenDataOpenSourceProgram":  "Prepared On The Basis Of Open Data Open Source Program, ",
+  "@preparedOnTheBasisOfOpenDataOpenSourceProgram": {
+    "desription": "Prepered"
+  },
+  "zarnigorUmrzakova": "Zarnigor Umrzakova",
+  "@zarnigorUmrzakova": {
+    "desription": "Zarnigor"
   }
+
 }
