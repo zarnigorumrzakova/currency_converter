@@ -34,7 +34,7 @@ class HomeDrawer extends StatelessWidget {
                 const SizedBox(
                   height: 18,
                 ),
-                 Text(
+                Text(
                   '${translate?.currencyConverter}',
                   style: const TextStyle(
                     fontWeight: FontWeight.w400,
@@ -45,36 +45,41 @@ class HomeDrawer extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                drawerElement(
-                    FlutterRemix.google_play_line, '${translate?.rateOnPlayMarket}',
-                    () {
+                drawerElement(FlutterRemix.google_play_line,
+                    '${translate?.rateOnPlayMarket}', () {
                   launchUrl(Uri.parse(
                       'https://play.google.com/store/apps/details?id=uz.mobile.currencymvvm'));
                 }),
-                drawerElement(FlutterRemix.github_line, '${translate?.sourceCode}', () {
+                drawerElement(
+                    FlutterRemix.github_line, '${translate?.sourceCode}', () {
                   launchUrl(Uri.parse(
                       'https://github.com/zarnigorumrzakova/currency_converter'));
                 }),
-                drawerElement(FlutterRemix.telegram_line, '${translate?.ourTelegramChannel}',
-                    () {
+                drawerElement(FlutterRemix.telegram_line,
+                    '${translate?.ourTelegramChannel}', () {
                   launchUrl(Uri.parse('https://t.me/flutterblogs'));
                 }),
-                drawerElement(FlutterRemix.facebook_line, '${translate?.weAreOnFacebook}', () {
+                drawerElement(
+                    FlutterRemix.facebook_line, '${translate?.weAreOnFacebook}',
+                    () {
                   launchUrl(Uri.parse('https://facebook.com'));
                 }),
-                drawerElement(FlutterRemix.twitter_line, '${translate?.weAreOnTwitter}', () {
+                drawerElement(
+                    FlutterRemix.twitter_line, '${translate?.weAreOnTwitter}',
+                    () {
                   launchUrl(Uri.parse('https://twitter.com'));
                 }),
-                drawerElement(FlutterRemix.instagram_line, '${translate?.weAreOnInstagram}',
-                    () {
+                drawerElement(FlutterRemix.instagram_line,
+                    '${translate?.weAreOnInstagram}', () {
                   launchUrl(Uri.parse('https://instagram.com/_umrzakova_14'));
                 }),
-                drawerElement(FlutterRemix.chat_1_line, '${translate?.feedback}', () {
+                drawerElement(
+                    FlutterRemix.chat_1_line, '${translate?.feedback}', () {
                   launchUrl(Uri.parse(
                       'https://github.com/zarnigorumrzakova/currency_converter'));
                 }),
-                drawerElement(FlutterRemix.information_line, '${translate?.about}',
-                        () {
+                drawerElement(
+                    FlutterRemix.information_line, '${translate?.about}', () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -90,9 +95,9 @@ class HomeDrawer extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                               Text(
+                              Text(
                                 '${translate?.currencyExchange}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 20,
                                 ),
@@ -107,7 +112,7 @@ class HomeDrawer extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                               ),
-                             SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               RichText(
@@ -115,7 +120,7 @@ class HomeDrawer extends StatelessWidget {
                                 text: TextSpan(
                                   text:
                                       '${translate?.centralBankOfTheRepublicOfUzbekistan}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF007C70),
                                     fontSize: 16,
                                     decoration: TextDecoration.underline,
@@ -125,10 +130,10 @@ class HomeDrawer extends StatelessWidget {
                                       launchUrl(Uri.parse('https://cbu.uz'));
                                     },
                                   children: [
-                                     TextSpan(
+                                    TextSpan(
                                       text:
-                                    '${translate?.preparedOnTheBasisOfOpenDataOpenSourceProgram}',
-                                      style: TextStyle(
+                                          '${translate?.preparedOnTheBasisOfOpenDataOpenSourceProgram}',
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
                                         decoration: TextDecoration.none,
@@ -150,17 +155,17 @@ class HomeDrawer extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
                               Text(
                                 ' ${translate?.zarnigorUmrzakova}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0,

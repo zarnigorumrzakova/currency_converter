@@ -1,18 +1,14 @@
-import 'dart:convert';
-
 import 'package:currency_converter/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:currency_converter/app_helpers.dart';
 import 'package:currency_converter/drawer.dart';
 import 'package:currency_converter/http_service.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'currency_item.dart';
-import 'drawer.dart';
+
 import 'currency.dart';
-import 'app_helpers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
@@ -72,6 +68,7 @@ class _HomePageState extends State<HomePage> {
     _refreshController.refreshCompleted();
   }
 
+  @override
   void dispose() {
     super.dispose();
     _refreshController.dispose();
@@ -83,17 +80,17 @@ class _HomePageState extends State<HomePage> {
     final translate = AppLocalizations.of(context);
     final provider = Provider.of<AppProvider>(context);
     return Scaffold(
-      drawer: HomeDrawer(),
+      drawer: const HomeDrawer(),
       appBar: AppBar(
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Color(0xFF01CED8),
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: const Color(0xFF01CED8),
         title: Text(
-          '${translate?.currencyConverter}',style: TextStyle(color: Colors.black),
+          '${translate?.currencyConverter}',style: const TextStyle(color: Colors.black),
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.calendar_month,
             ),
             onPressed: () async {
@@ -123,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const PopupMenuItem(
                 value: 'ru',
-                child: Text('русский'),
+                child: Text('Русский'),
               ),
             ],
             onSelected: (value) {
@@ -137,13 +134,13 @@ class _HomePageState extends State<HomePage> {
                default :
                  provider.setLocale('en', '');
                  break;
-              };
+              }
             },
           ),
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [
               Color(0xFF00D0CE),
               Color(0xFF82E58A)

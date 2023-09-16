@@ -43,13 +43,18 @@
   "@currencyExchange": {
     "description": "Currency"
   },
-  "preparedOnTheBasisOfOpenDataOpenSourceProgram":  "Prepared On The Basis Of Open Data Open Source Program, ",
+  "preparedOnTheBasisOfOpenDataOpenSourceProgram":  " Prepared On The Basis Of Open Data Open Source Program, ",
   "@preparedOnTheBasisOfOpenDataOpenSourceProgram": {
     "desription": "Prepered"
   },
   "zarnigorUmrzakova": "Zarnigor Umrzakova",
   "@zarnigorUmrzakova": {
     "desription": "Zarnigor"
+  },
+  "uzbeksum": "Uzbek soum",
+  "@uzbeksum" : {
+    "description": "bank"
   }
+
 
 }

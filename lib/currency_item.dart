@@ -4,7 +4,6 @@ import 'package:currency_converter/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 class CurrencyItems extends StatelessWidget {
   final Currency currency;
   final String locale;
@@ -14,7 +13,7 @@ class CurrencyItems extends StatelessWidget {
     super.key,
     required this.currency,
     required this.locale,
-   required this.selectedDate,
+    required this.selectedDate,
   });
 
   @override
@@ -27,7 +26,7 @@ class CurrencyItems extends StatelessWidget {
             builder: (_) => ConverterPage(
               currency: currency,
               locale: locale,
-              selectedDate: selectedDate,
+              seledtedDate: selectedDate,
             ),
           ),
         );
@@ -35,7 +34,7 @@ class CurrencyItems extends StatelessWidget {
       child: Container(
         color: Colors.white.withOpacity(0.2),
         padding: const EdgeInsets.all(16),
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
           children: [
             Expanded(
@@ -51,17 +50,19 @@ class CurrencyItems extends StatelessWidget {
                     double.tryParse('${currency.rate} '),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Text(
-                  '${(currency.diff?.startsWith('-') ?? false) ? '${currency.diff}' : '+${currency.diff}'}',
+                  (currency.diff?.startsWith('-') ?? false)
+                      ? '${currency.diff}'
+                      : '+${currency.diff}',
                   style: TextStyle(
                       color: (currency.diff?.startsWith('-') ?? false)
                           ? Colors.red[800]
                           : Colors.green[800]),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 (currency.diff?.startsWith('-') ?? false)

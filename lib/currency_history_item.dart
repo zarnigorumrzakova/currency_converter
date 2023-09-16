@@ -1,5 +1,3 @@
-import 'package:currency_converter/app_helpers.dart';
-import 'package:currency_converter/converter_page.dart';
 import 'package:currency_converter/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,7 +17,7 @@ class CurrencyHistoryItem extends StatelessWidget {
     return Container(
       color: Colors.white.withOpacity(0.2),
       padding: const EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
           Expanded(
@@ -40,7 +38,7 @@ class CurrencyHistoryItem extends StatelessWidget {
                   double.tryParse('${currency.rate} '),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Text(
@@ -50,7 +48,7 @@ class CurrencyHistoryItem extends StatelessWidget {
                         ? Colors.red[800]
                         : Colors.green[800]),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               (currency.diff?.startsWith('-') ?? false)
