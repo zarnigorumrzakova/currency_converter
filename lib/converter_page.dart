@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get_it/get_it.dart';
@@ -7,9 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import 'app_helpers.dart';
-
 import 'currency.dart';
-
 import 'currency_history_item.dart';
 import 'http_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
